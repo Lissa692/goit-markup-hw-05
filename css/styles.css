@@ -143,15 +143,16 @@ body {
 }
 .effect {
   position: relative;
+  color: var(--pressed-state);
 }
 .effect::after {
   content: "";
   position: absolute;
   display: block;
+  top: 43px;
   width: 100%;
   height: 4px;
   border-radius: 2px;
-  margin-top: 21px;
   background-color: var(--pressed-state);
 }
 
@@ -221,7 +222,7 @@ body {
   margin-right: auto;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   background-color: var(--primary-brand);
-  transition: color var(--effects);
+  transition: background-color var(--effects);
 }
 .first-btn:focus,
 .first-btn:hover {
@@ -588,10 +589,11 @@ body {
 .backdrop {
   position: fixed;
   top: 0%;
+  left: 0;
   height: 100%;
   width: 100%;
-  background-color: var(--modal-overlay);
-  transition: opacity var(--effects), visibility var(--effects);
+  background-color:rgba(46, 47, 66, 0.4);;
+  transition: opacity 700ms ease-out, visibility 700ms ease-out;
 }
 .modal-window {
   position: relative;
@@ -603,23 +605,26 @@ body {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
     0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-  transform: translate(-50%, -50%) rotate(360deg);
-  transition: transform 700ms linear;
+  transition: transform 700ms ease-out;
+  transform: translate(-50%, -50%) scaleY(1);
 }
-.backdrop.is-hidden.modal-window {
-  transform: translate(-50%, -50%) rotate(0);
+.backdrop.is-hidden .modal-window {
+  transform: translate(-50%, -50%) scaleY(0);
 }
 
 .wrap-button {
   position: absolute;
   top: 24px;
-
   right: 24px;
-  width: 24px;
-  height: 24px;
   border-radius: 50%;
-  background-color: #e7e9fc;
+  background-color: var(--modal-overlay);
   border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: background-color var(--effects);
+
+}
+.wrap-button:hover,
+.wrap-button:focus{
+  background-color: var(--pressed-state);
 }
 
 .is-hidden {
